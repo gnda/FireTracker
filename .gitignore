@@ -18,7 +18,7 @@ Assets/Plugins/Editor/JetBrains*
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
-Assets/Tobii
+Assets/Tobii/*
 
 # Visual Studio cache directory
 .vs/
