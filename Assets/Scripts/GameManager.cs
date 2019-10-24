@@ -172,7 +172,6 @@ public class GameManager : MonoBehaviour
             SelectionCursor = CursorSelection.Nothing;
             Cursor.SetCursor(null, new Vector2(20, 20), CursorMode.ForceSoftware);
         }
-        
     }
 
     public void TreeRemover_OnClick()
@@ -205,9 +204,7 @@ public class GameManager : MonoBehaviour
             SelectionCursor = CursorSelection.Nothing;
             Cursor.SetCursor(null, new Vector2(20, 20), CursorMode.ForceSoftware);
         }
-        
     }
-
     #endregion
 
 }

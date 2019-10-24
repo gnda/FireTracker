@@ -47,13 +47,14 @@ public class PlayerController : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Space))
             {
                 GazePoint gazePoint = TobiiAPI.GetGazePoint();
-
+                
                 if (gazePoint.IsRecent()
                     && gazePoint.Timestamp > (_lastGazePoint.Timestamp + float.Epsilon))
                 {
-                    lastSelectedDrone.IsBusy = true;
-                    lastSelectedDrone.WaitDuration = LastSeenFire.FireDuration;
-                    lastSelectedDrone.Move(LastSeenFire.transform.position);
+                    if (!lastSelectedDrone.IsBusy) {
+                        lastSelectedDrone.WaitDuration = LastSeenFire.FireDuration;
+                        lastSelectedDrone.Move(LastSeenFire.transform.position);
+                    }
                 }
             }
         }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 
 public class Drone : MonoBehaviour
 {
@@ -11,9 +9,16 @@ public class Drone : MonoBehaviour
     public bool IsMoving { set; get; }
     public float WaitDuration { set; get; }
 
+    private void Start()
+    {
+        IsBusy = false;
+        IsMoving = false;
+    }
+
     public void Move(Vector3 direc)
     {
-        StartCoroutine(TranslationCoroutine(
+        if (!IsBusy)
+            StartCoroutine(TranslationCoroutine(
             transform.position, new Vector2(direc.x, direc.y), true));
     }
 
@@ -22,6 +27,7 @@ public class Drone : MonoBehaviour
         float elapsedTime = 0;
 
         IsMoving = true;
+        IsBusy = true;
 
         while (elapsedTime < moveDuration)
         {
@@ -38,6 +44,8 @@ public class Drone : MonoBehaviour
 
         if (goBack)
             yield return StartCoroutine(WaitCoroutine(endPos, startPos));
+        else
+            yield return IsBusy = false;
     }
     
     private IEnumerator WaitCoroutine(Vector2 startPos, Vector2 endPos)
