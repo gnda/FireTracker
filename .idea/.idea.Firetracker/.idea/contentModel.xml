@@ -9,7 +9,6 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Drone.cs" t="Include" />
-          <e p="EasingFunctions.cs" t="Include" />
           <e p="Fire.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GazeController.cs" t="Include" />

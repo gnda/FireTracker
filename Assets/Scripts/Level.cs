@@ -5,7 +5,7 @@ using System.Collections;
 public class Level : MonoBehaviour
 {
     [field: Header("Level Settings")]
-    public float LevelDuration { get; } = 30f;
+    public float LevelDuration { get; } = 120f;
 
     [Header("Level Prefabs")]
     [SerializeField] GameObject firePrefab;
@@ -52,19 +52,19 @@ public class Level : MonoBehaviour
     {
         if (difficulty == "Easy")
         {
-            Debug.Log(difficulty);
+            //Debug.Log(difficulty);
             StartCoroutine(BURN(Random.Range(0f, 20f)));
             //StartCoroutine(WaitingForBURN());
         }
         if (difficulty == "Normal")
         {
-            Debug.Log(difficulty);
+            //Debug.Log(difficulty);
             StartCoroutine(BURN(Random.Range(0f, 15f)));
             //StartCoroutine(WaitingForBURN());
         }
         if (difficulty == "Hard")
         {
-            Debug.Log(difficulty);
+            //Debug.Log(difficulty);
             StartCoroutine(BURN(Random.Range(0f, 7f)));
             //StartCoroutine(WaitingForBURN());
         }
