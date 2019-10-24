@@ -419,12 +419,17 @@ PrefabInstance:
     - target: {fileID: 5405069544630861622, guid: f072f14b9d9e3d4499afb7216c79659e,
         type: 3}
       propertyPath: difficulty.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5405069544630861622, guid: f072f14b9d9e3d4499afb7216c79659e,
         type: 3}
       propertyPath: difficulty.Array.data[0]
-      value: 
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405069544630861622, guid: f072f14b9d9e3d4499afb7216c79659e,
+        type: 3}
+      propertyPath: difficulty
+      value: Hard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f072f14b9d9e3d4499afb7216c79659e, type: 3}
