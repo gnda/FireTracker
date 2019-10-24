@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +15,8 @@ public enum CursorSelection
 public enum GameMode
 {
     Nothing = 0,
-    Tracking = 0,
-    Watching = 1
+    Tracking = 1,
+    Watching = 2
 }
 
 public class GameManager : MonoBehaviour
@@ -113,6 +114,8 @@ public class GameManager : MonoBehaviour
     public void StartLevel()
     {
         currentGameMode = GameMode.Tracking;
+        FindObjectOfType<PlayerGaze>().gameObject
+            .GetComponent<SpriteRenderer>().enabled = true;
         DisablePanels();
         timer = FindObjectOfType<Level>().LevelDuration;
         levelPanel.SetActive(true);
@@ -123,6 +126,8 @@ public class GameManager : MonoBehaviour
     public void WatchingMode()
     {
         currentGameMode = GameMode.Watching;
+        FindObjectOfType<PlayerGaze>().gameObject
+            .GetComponent<SpriteRenderer>().enabled = false;
         FindObjectOfType<Drone>().Move();
     }
 

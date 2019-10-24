@@ -777,7 +777,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1658328107
-  m_SortingLayer: -3
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -831,6 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cae3ad971416214da39fcd23abcb5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelDuration: 5
   firePrefab: {fileID: 1326398652228768026, guid: 050b2ab76c1a7834585a6a43ee9acaaf,
     type: 3}
   difficulty: Hard

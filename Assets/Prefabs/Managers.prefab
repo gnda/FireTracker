@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1116392210
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1504,7 +1504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2874684082630923935
 Transform:
   m_ObjectHideFlags: 0
@@ -2637,7 +2637,7 @@ MonoBehaviour:
   m_ImageWaterBucket: {fileID: 1965661089}
   m_ImageTreeRemover: {fileID: 1692022008}
   m_ImageShield: {fileID: 1607889925}
-  SelectionCursor: 0
+  currentGameMode: 0
   mainMenuPanel: {fileID: 2874684082169424007}
   levelPanel: {fileID: 2874684082630923920}
   pausePanel: {fileID: 2874684083079030973}

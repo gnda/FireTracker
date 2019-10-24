@@ -66,7 +66,7 @@ public class Level : MonoBehaviour
         if (difficulty == "Hard")
         {
             //Debug.Log(difficulty);
-            StartCoroutine(BURN(Random.Range(0f, 7f)));
+            StartCoroutine(BURN(Random.Range(0f, 2f)));
             //StartCoroutine(WaitingForBURN());
         }
     }

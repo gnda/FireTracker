@@ -14,6 +14,7 @@
           <e p="GazePlotterCustom.cs" t="Include" />
           <e p="Level.cs" t="Include" />
           <e p="PlayerGaze.cs" t="Include" />
+          <e p="Smoke.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
         </e>
         <e p="Tobii" t="Include">

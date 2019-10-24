@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 463814}
   - component: {fileID: 21255086}
   - component: {fileID: 233927023}
-  - component: {fileID: 527110712}
   m_Layer: 0
   m_Name: GazePlot
   m_TagString: Untagged
@@ -69,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 599842865
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6e21aabfdb08e9b4db74281529681390, type: 3}
   m_Color: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
@@ -99,20 +98,3 @@ MonoBehaviour:
   PointScale: 1
   VisualizationDistance: 10
   FilterSmoothingFactor: 0.15
---- !u!114 &527110712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7df284807503c74d9a1aa3f74cf857a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_selectDrone: {fileID: 0}
-  m_placeholderDrones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
