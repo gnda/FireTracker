@@ -94,6 +94,9 @@
 			for (int i = 0; i < PointCloudSize; i++)
 			{
 				var pointCloudSprite = new GameObject("PointCloudSprite" + i);
+				pointCloudSprite.AddComponent<Rigidbody2D>();
+				pointCloudSprite.AddComponent<BoxCollider2D>();
+				
 				pointCloudSprite.layer = gameObject.layer;
 
 				var spriteRenderer = pointCloudSprite.AddComponent<SpriteRenderer>();
