@@ -1,4 +1,5 @@
-﻿using Tobii.Gaming;
+﻿using System;
+using Tobii.Gaming;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,8 +15,16 @@ public class PlayerController : MonoBehaviour
         if (gazePoint.IsRecent()
             && gazePoint.Timestamp > (_lastGazePoint.Timestamp + float.Epsilon))
         {
-            Debug.Log((int) gazePoint.Screen.x);
-            Debug.Log((int) gazePoint.Screen.y);
+            //Debug.Log((int) gazePoint.Screen.x);
+            //Debug.Log((int) gazePoint.Screen.y);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<Fire>())
+        {
+            Debug.Log(other.gameObject);
         }
     }
 }
