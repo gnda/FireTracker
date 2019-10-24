@@ -30,4 +30,14 @@ public class Fire : MonoBehaviour
     {
         Debug.Log("TEST");
     }
+
+    private void OnMouseDown()
+    {
+        if(GameManager.SelectionCursor == CursorSelection.Bucket)
+        {
+            Destroy(this.gameObject);
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+            GameManager.SelectionCursor = CursorSelection.Nothing;
+        }
+    }
 }
