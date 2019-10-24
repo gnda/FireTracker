@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 463814}
-  - component: {fileID: 11431766}
   - component: {fileID: 21255086}
+  - component: {fileID: 233927023}
   m_Layer: 0
   m_Name: GazePlot
   m_TagString: Untagged
@@ -32,23 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11431766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96aa7272f145e674b8b3947eb3f987b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PointCloudSize: 10
-  PointSprite: {fileID: 21300000, guid: c514805d788f4834fb6e81bf9d81a45c, type: 3}
-  PointScale: 0.1
-  VisualizationDistance: 10
-  FilterSmoothingFactor: 0.85
 --- !u!212 &21255086
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -98,3 +81,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &233927023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad75096e70e496caf3ffc6075f4ed65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointCloudSize: 1
+  PointSprite: {fileID: 21300000, guid: e650892e643ce8a4cbdb36e649229be2, type: 3}
+  PointScale: 1
+  VisualizationDistance: 10
+  FilterSmoothingFactor: 0.15
