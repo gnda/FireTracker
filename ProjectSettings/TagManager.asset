@@ -41,8 +41,14 @@ TagManager:
   - name: Background
     uniqueID: 1658328107
     locked: 0
+  - name: Drone
+    uniqueID: 2580827707
+    locked: 0
   - name: Eyes
     uniqueID: 599842865
+    locked: 0
+  - name: Fire
+    uniqueID: 3198905925
     locked: 0
   - name: Default
     uniqueID: 0
