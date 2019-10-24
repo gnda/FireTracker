@@ -53,19 +53,19 @@ public class Level : MonoBehaviour
         if (difficulty == "Easy")
         {
             Debug.Log(difficulty);
-            StartCoroutine(BURN(15f));
+            StartCoroutine(BURN(Random.Range(0f, 20f)));
             //StartCoroutine(WaitingForBURN());
         }
         if (difficulty == "Normal")
         {
             Debug.Log(difficulty);
-            StartCoroutine(BURN(10f));
+            StartCoroutine(BURN(Random.Range(0f, 15f)));
             //StartCoroutine(WaitingForBURN());
         }
         if (difficulty == "Hard")
         {
             Debug.Log(difficulty);
-            StartCoroutine(BURN(5f));
+            StartCoroutine(BURN(Random.Range(0f, 7f)));
             //StartCoroutine(WaitingForBURN());
         }
     }
