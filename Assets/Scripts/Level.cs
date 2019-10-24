@@ -29,7 +29,7 @@ public class Level : MonoBehaviour
                 if (tile != null)
                 {
                     var position = transform.position;
-                    GameObject fireGo = Instantiate(firePrefab, new Vector2(x, y), 
+                    GameObject fireGo = Instantiate(firePrefab, new Vector2(x-0.5f, y-0.5f), 
                         Quaternion.identity);
                     fireGo.transform.SetParent(transform);
                 }
