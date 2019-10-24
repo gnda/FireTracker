@@ -441,6 +441,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &527110711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 178470, guid: 8bad3d443d394ab488ee8cadb14f6147,
+    type: 3}
+  m_PrefabInstance: {fileID: 1089649503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &527110712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527110711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7df284807503c74d9a1aa3f74cf857a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_selectDrone: {fileID: 731347923}
+  m_placeholderDrones:
+  - {fileID: 728059542}
+  - {fileID: 676019992}
+  - {fileID: 1045839958}
 --- !u!1 &548499679
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,10 +563,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.3141823, y: 0.60580957, z: -0.79296875}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 728059543}
-  - {fileID: 676019993}
-  - {fileID: 1045839959}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -571,11 +591,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676019992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.38, y: -1.23, z: 0}
+  m_LocalPosition: {x: 5.94, y: -0.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 659865465}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &726754408
 GameObject:
@@ -677,11 +697,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728059542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.15, y: -1.18, z: 0}
+  m_LocalPosition: {x: 3.15, y: -0.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 659865465}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &731347923
 GameObject:
@@ -707,7 +727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731347923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.83, y: 0.60580957, z: -0.79296875}
+  m_LocalPosition: {x: 3.17, y: -0.63, z: -0.79296875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 950170941}
@@ -821,7 +841,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950170940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.0841823, y: -1.2158096, z: 0.79296875}
+  m_LocalPosition: {x: -0.9141822, y: 0.01999998, z: 0.79296875}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 731347924}
@@ -999,11 +1019,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045839958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.37, y: -1.23, z: 0}
+  m_LocalPosition: {x: 8.69, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 659865465}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1089649503
 PrefabInstance:
@@ -1288,7 +1308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995138192}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2141824, y: -1.1958096, z: 0.79296875}
+  m_LocalPosition: {x: 0.9558182, y: 0.03999996, z: 0.79296875}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 731347924}
@@ -1516,12 +1536,17 @@ PrefabInstance:
     - target: {fileID: 5405069544630861622, guid: f072f14b9d9e3d4499afb7216c79659e,
         type: 3}
       propertyPath: difficulty.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5405069544630861622, guid: f072f14b9d9e3d4499afb7216c79659e,
         type: 3}
       propertyPath: difficulty.Array.data[0]
-      value: 
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405069544630861622, guid: f072f14b9d9e3d4499afb7216c79659e,
+        type: 3}
+      propertyPath: difficulty
+      value: Hard
       objectReference: {fileID: 0}
     - target: {fileID: 5405069544392525346, guid: f072f14b9d9e3d4499afb7216c79659e,
         type: 3}
