@@ -6,9 +6,16 @@ using UnityEngine.Tilemaps;
 
 public class Fire : MonoBehaviour
 {
+    public GameObject gameManager;
     [SerializeField] private float fireDuration = 5.0f;
-
+    [field: Header("Score")]
+    public int Score { get; set; } = 0;
     private Drone lastDrone;
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("/Managers/GameManager");
+    }
 
     public float FireDuration
     {
@@ -18,10 +25,13 @@ public class Fire : MonoBehaviour
 
     private void Update()
     {
-        if (lastDrone &&
-            lastDrone.GetComponent<Drone>() && 
-            !lastDrone.GetComponent<Drone>().IsMoving)
+        Debug.Log(Score);
+        if (lastDrone && lastDrone.GetComponent<Drone>() && !lastDrone.GetComponent<Drone>().IsMoving)
+        {
+            gameManager.GetComponent<GameManager>().Scoring();
             Destroy(gameObject);
+        }
+           
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,6 +47,8 @@ public class Fire : MonoBehaviour
         if(GameManager.SelectionCursor == CursorSelection.Bucket)
         {
             Destroy(this.gameObject);
+            gameManager.GetComponent<GameManager>().Scoring();
+            Debug.Log("+100");
             Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
             GameManager.SelectionCursor = CursorSelection.Nothing;
         }

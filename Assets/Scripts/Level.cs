@@ -7,7 +7,7 @@ using System.Linq;
 public class Level : MonoBehaviour
 {
     [field: Header("Level Settings")]
-    public float LevelDuration { get; } = 120f;
+   public float LevelDuration { get; } = 4;
 
     [Header("Level Prefabs")]
     [SerializeField] GameObject firePrefab;
@@ -96,7 +96,7 @@ public class Level : MonoBehaviour
     private void Update()
     {
         SpawnFire();
-        Debug.Log(cellBurning[0].z);
+    //    Debug.Log(cellBurning[0].z);
        // FireAwaitingToDiseapear();
     }
 
@@ -104,11 +104,11 @@ public class Level : MonoBehaviour
     //{
     //        for (int z = 0; z <= cellBurning.Count; z++)
     //        {
-                
+
     //            cellBurned.Add(new Vector2(cellBurning[z].x, cellBurning[z].y));
     //            StartCoroutine(Propagation(cellBurning[z].x, cellBurning[z].y, cellBurning[z].z, z));
     //        }
-        
+
     //}
 
     //private void PropagationFire(float posX, float posY, int color)
@@ -144,7 +144,7 @@ public class Level : MonoBehaviour
         Quaternion.identity);
         fireHaut.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
 
-        cellBurning.Add(new Vector3(posX, posY -1, timerFire));
+        cellBurning.Add(new Vector3(posX, posY - 1, timerFire));
         GameObject fireBas = Instantiate(firePrefab, new Vector3(posX + 0.5f, posY - 0.5f, tempsEnSecondes),
         Quaternion.identity);
         fireBas.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
@@ -155,7 +155,7 @@ public class Level : MonoBehaviour
         fireDroite.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
 
         cellBurning.Add(new Vector3(posX - 1, posY, timerFire));
-        GameObject fireGauche = Instantiate(firePrefab, new Vector3(posX - 1.5f, posY + 0.5f, tempsEnSecondes),
+        GameObject fireGauche = Instantiate(firePrefab, new Vector3(posX - 0.5f, posY + 0.5f, tempsEnSecondes),
         Quaternion.identity);
         fireGauche.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
     }
@@ -174,24 +174,24 @@ public class Level : MonoBehaviour
            
             //Debug.Log(posX);
             //Debug.Log(posY);
-            Debug.Log(typeOfFire);
+          //  Debug.Log(typeOfFire);
 
             cellBurning.Add(new Vector3(posX, posY, timerFire));
 
             StartCoroutine(Propagation(posX, posY, timerFire));
 
-           // var foo = cellBurning.Skip(currentlyCellBurn).First();
-          //  currentlyCellBurn += 1;
+            // var foo = cellBurning.Skip(currentlyCellBurn).First();
+            //  currentlyCellBurn += 1;
             //Debug.Log(cellBurning[0]);
             //Debug.Log(cellBurning[1]);
 
-          //  var position = transform.position;
+            var position = transform.position;
             GameObject fireGo = Instantiate(firePrefab, new Vector2(posX + 0.5f, posY + 0.5f),
                 Quaternion.identity);
             fireGo.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
             inFirst = false;
         }
-        // fireGo.transform.SetParent(transform);
+        //fireGo.transform.SetParent(transform);
         //print(Time.time);
     }
     //IEnumerator WaitingForBURN()
@@ -207,17 +207,17 @@ public class Level : MonoBehaviour
         if (typeOfFire == 0)
         {
             timerFire = timeBlue;
-            couleur = new Color(0, 0, 255, 255);
+            couleur = new Color(0, 255, 255, 255);
         }
         if (typeOfFire == 1)
         {
             timerFire = timeGreen;
-            couleur = new Color(0, 255, 0, 255);
+            couleur = new Color(116, 255, 0, 255);
         }
         if (typeOfFire == 2)
         {
             timerFire = timeRed;
-            couleur = new Color(255, 0, 0, 255);
+            couleur = new Color(255, 166, 0, 255);
         }
 
         return couleur;

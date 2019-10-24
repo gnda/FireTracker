@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public static CursorSelection SelectionCursor = CursorSelection.Nothing;
 
+    public GameObject levelCompleteUI; 
+
 
     #region MonoBehaviour lifecycle
     protected void Awake()
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (timerTxt.IsActive())
             timerTxt.text = ((int)timer).ToString();
 
@@ -42,11 +45,23 @@ public class GameManager : MonoBehaviour
             timer -= Time.fixedDeltaTime;
 
             if (timer <= 0)
-                GameOver();
+                NextLevel();
         }
 
         if (Input.GetButtonDown("Cancel"))
             PauseGame();
+    }
+    #endregion
+
+    #region Score
+    public void Scoring()
+    {
+        score += 100;
+        if (scoreTxt.IsActive())
+        {
+            scoreTxt.text = score.ToString();
+        }
+            
     }
     #endregion
 
@@ -59,6 +74,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Live - Texts")]
     [SerializeField] Text timerTxt;
+
+    [Header("Live - Score")]
+    [SerializeField] Text scoreTxt;
+    [SerializeField] int score;
 
     private List<GameObject> panels;
 
@@ -116,8 +135,12 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        levelCompleteUI.SetActive(true);
         if (currentLevelIndex < levelsPrefabs.Length)
+        {
             currentLevelIndex++;
+        }
+            
         else
             WinGame();
     }
