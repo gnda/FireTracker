@@ -1,6 +1,7 @@
 ﻿using System;
 using Tobii.Gaming;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,14 +18,6 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log((int) gazePoint.Screen.x);
             //Debug.Log((int) gazePoint.Screen.y);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.GetComponent<Fire>())
-        {
-            Debug.Log(other.gameObject);
         }
     }
 }
