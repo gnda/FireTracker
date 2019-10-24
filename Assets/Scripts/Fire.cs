@@ -7,7 +7,14 @@ using UnityEngine.Tilemaps;
 
 public class Fire : MonoBehaviour
 {
+    public GameObject gameManager;
     [SerializeField] private float fireDuration = 5.0f;
+    [field: Header("Score")]
+    public int Score { get; set; } = 0;
+    private void Start()
+    {
+        gameManager = GameObject.Find("/Managers/GameManager");
+    }
 
     public float FireDuration
     {
@@ -22,18 +29,7 @@ public class Fire : MonoBehaviour
             !FindObjectOfType<Drone>().SeenFiresPosition.Contains(transform.position)) {
             FindObjectOfType<Drone>().SeenFiresPosition.Add(transform.position);
         }
-    }
-
-    private void OnParticleTrigger()
-    {
-        Debug.Log("TEST");
-        ParticleSystem ps = GetComponent<ParticleSystem>();
-
-        if (FindObjectOfType<GameManager>().currentGameMode == GameMode.Watching
-            && ps.trigger.GetCollider(0).GetComponent<Smoke>()) {
-            Debug.Log("TEST");
-            Destroy(gameObject);
-        }
+           
     }
 
     private void OnMouseDown()
@@ -41,6 +37,8 @@ public class Fire : MonoBehaviour
         if(GameManager.SelectionCursor == CursorSelection.Bucket)
         {
             Destroy(this.gameObject);
+            gameManager.GetComponent<GameManager>().Scoring();
+            Debug.Log("+100");
             Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
             GameManager.SelectionCursor = CursorSelection.Nothing;
         }
