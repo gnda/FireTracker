@@ -1,33 +1,42 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Drone : MonoBehaviour
 {
     [SerializeField] private float moveDuration = 5.0f;
-    public bool IsBusy { set; get; }
+    
+    private Vector2 anchorPosition;
+    private List<Vector2> seenFiresPosition;
     public bool IsMoving { set; get; }
-    public float WaitDuration { set; get; }
+    public List<Vector2> SeenFiresPosition => seenFiresPosition;
 
     private void Start()
     {
-        IsBusy = false;
+        anchorPosition = transform.position;
+        seenFiresPosition = new List<Vector2>();
         IsMoving = false;
     }
 
-    public void Move(Vector3 direc)
+    public void Move()
     {
-        if (!IsBusy)
-            StartCoroutine(TranslationCoroutine(
-            transform.position, new Vector2(direc.x, direc.y), true));
+        StartCoroutine(MoveToFiresCoroutine());
     }
 
-    private IEnumerator TranslationCoroutine(Vector2 startPos, Vector2 endPos, bool goBack = false)
+    private IEnumerator MoveToFiresCoroutine()
+    {
+        foreach (Vector2 pos in seenFiresPosition)
+            yield return StartCoroutine(TranslationCoroutine(transform.position, pos));
+        yield return StartCoroutine(
+            TranslationCoroutine(transform.position, anchorPosition));
+    }
+    
+    private IEnumerator TranslationCoroutine(Vector2 startPos, Vector2 endPos)
     {
         float elapsedTime = 0;
 
         IsMoving = true;
-        IsBusy = true;
 
         while (elapsedTime < moveDuration)
         {
@@ -39,27 +48,7 @@ public class Drone : MonoBehaviour
         }
 
         transform.position = endPos;
-        
-        IsMoving = false;
-
-        if (goBack)
-            yield return StartCoroutine(WaitCoroutine(endPos, startPos));
-        else
-            yield return IsBusy = false;
-    }
     
-    private IEnumerator WaitCoroutine(Vector2 startPos, Vector2 endPos)
-    {
-        float elapsedTime = 0;
-
-        while (elapsedTime < WaitDuration)
-        {
-            float elapsedTimePerc = elapsedTime / WaitDuration;
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        yield return StartCoroutine(TranslationCoroutine(startPos, endPos));
+        IsMoving = false;
     }
 }

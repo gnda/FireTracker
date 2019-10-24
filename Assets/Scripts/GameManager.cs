@@ -4,22 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum CursorSelection
+ {
+     Nothing = 0,
+     Bucket = 1,
+     Remover = 2,
+     Shield = 3
+ }
+
+public enum GameMode
 {
     Nothing = 0,
-    Bucket = 1,
-    Remover = 2,
-    Shield = 3
+    Tracking = 0,
+    Watching = 1
 }
 
 public class GameManager : MonoBehaviour
 {
-
     [SerializeField] GameObject m_ImageWaterBucket;
     [SerializeField] GameObject m_ImageTreeRemover;
     [SerializeField] GameObject m_ImageShield;
 
     public static CursorSelection SelectionCursor = CursorSelection.Nothing;
-
+    
+    public GameMode currentGameMode = GameMode.Nothing;
 
     #region MonoBehaviour lifecycle
     protected void Awake()
@@ -42,7 +49,7 @@ public class GameManager : MonoBehaviour
             timer -= Time.fixedDeltaTime;
 
             if (timer <= 0)
-                GameOver();
+                WatchingMode();
         }
 
         if (Input.GetButtonDown("Cancel"))
@@ -74,9 +81,7 @@ public class GameManager : MonoBehaviour
     private void DisablePanels()
     {
         foreach (GameObject panel in panels)
-        {
             panel.SetActive(false);
-        }
     }
     #endregion
 
@@ -107,11 +112,18 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel()
     {
+        currentGameMode = GameMode.Tracking;
         DisablePanels();
         timer = FindObjectOfType<Level>().LevelDuration;
         levelPanel.SetActive(true);
 
         SetTimeScale(1);
+    }
+
+    public void WatchingMode()
+    {
+        currentGameMode = GameMode.Watching;
+        FindObjectOfType<Drone>().Move();
     }
 
     public void NextLevel()

@@ -8,28 +8,17 @@ public class Fire : MonoBehaviour
 {
     [SerializeField] private float fireDuration = 5.0f;
 
-    private Drone lastDrone;
-
     public float FireDuration
     {
         get => fireDuration;
         set => fireDuration = value;
     }
 
-    private void Update()
-    {
-        if (lastDrone &&
-            lastDrone.GetComponent<Drone>() && 
-            !lastDrone.GetComponent<Drone>().IsMoving)
-            Destroy(gameObject);
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        FindObjectOfType<PlayerController>().LastSeenFire = this;
-        if (other.GetComponent<Drone>()) {
-            lastDrone = other.GetComponent<Drone>();
-        }
+        if (FindObjectOfType<GameManager>().currentGameMode == GameMode.Tracking 
+            && other.GetComponent<PlayerGaze>())
+            FindObjectOfType<Drone>().SeenFiresPosition.Add(transform.position);
     }
 
     private void OnMouseDown()

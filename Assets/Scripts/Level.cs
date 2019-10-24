@@ -4,8 +4,9 @@ using System.Collections;
 
 public class Level : MonoBehaviour
 {
-    [field: Header("Level Settings")]
-    public float LevelDuration { get; } = 120f;
+    [Header("Level Settings")] [SerializeField]
+    private float levelDuration = 10f;
+    public float LevelDuration => levelDuration;
 
     [Header("Level Prefabs")]
     [SerializeField] GameObject firePrefab;

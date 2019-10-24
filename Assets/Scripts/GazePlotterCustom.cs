@@ -96,6 +96,7 @@
 				var pointCloudSprite = new GameObject("PointCloudSprite" + i);
 				pointCloudSprite.AddComponent<Rigidbody2D>();
 				pointCloudSprite.AddComponent<BoxCollider2D>();
+				pointCloudSprite.AddComponent<PlayerGaze>();
 				
 				pointCloudSprite.layer = gameObject.layer;
 
