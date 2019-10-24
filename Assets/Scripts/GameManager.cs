@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject m_ImageTreeRemover;
     [SerializeField] GameObject m_ImageShield;
 
-    public CursorSelection SelectionCursor = CursorSelection.Nothing;
+    public static CursorSelection SelectionCursor = CursorSelection.Nothing;
 
 
     #region MonoBehaviour lifecycle
@@ -208,12 +208,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void OnMouseDown()
-    {
-        Debug.Log("Current Cursor : " + SelectionCursor.ToString());
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-        SelectionCursor = CursorSelection.Nothing;
-    }
     #endregion
 
 }
