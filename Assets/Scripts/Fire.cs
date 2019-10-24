@@ -1,33 +1,34 @@
-﻿using DefaultNamespace;
+﻿using System;
+using System.Collections;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Fire : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    [SerializeField] private float fireDuration = 5.0f;
+
+    private Drone lastDrone;
+
+    public float FireDuration
     {
-        /*if (other.GetComponentInParent<PlayerView>())
-        {
-            Vector2 position = other.transform.position;
-            Tilemap tilemap = FindObjectOfType<Tilemap>();
-            BoundsInt bounds = tilemap.cellBounds;
-            TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
-            
-            //TileBase test = allTiles[(int) position.x + (int) position.y * bounds.size.x];
-            Debug.Log("Eyes position");
-            Debug.Log(new Vector2((int) position.x, (int) position.y));
-            Debug.Log("Fires position");
-            foreach (Fire f in FindObjectsOfType<Fire>())
-            {
-                Debug.Log(f.transform.position);
-                if (f.transform.position == )
-            }
-            Debug.Log("------");
-        }*/
+        get => fireDuration;
+        set => fireDuration = value;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void Update()
     {
-        Debug.Log("TEST");
+        if (lastDrone &&
+            lastDrone.GetComponent<Drone>() && 
+            !lastDrone.GetComponent<Drone>().IsMoving)
+            Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        FindObjectOfType<PlayerController>().LastSeenFire = this;
+        if (other.GetComponent<Drone>()) {
+            lastDrone = other.GetComponent<Drone>();
+        }
     }
 }
