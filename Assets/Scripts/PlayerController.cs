@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
         if (gazePoint.IsRecent()
             && gazePoint.Timestamp > (_lastGazePoint.Timestamp + float.Epsilon))
         {
-            Debug.Log((int)gazePoint.Screen.x);
-            Debug.Log((int)gazePoint.Screen.y);
+            //Debug.Log((int)gazePoint.Screen.x);
+            //Debug.Log((int)gazePoint.Screen.y);
         }
 
         if (m_selectDrone != null && m_placeholderDrones.Any())
@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
                 m_selectDrone.transform.position = placeholderDrone3;
             }
         }
-
 
     }
 }
