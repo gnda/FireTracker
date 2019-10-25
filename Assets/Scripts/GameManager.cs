@@ -180,8 +180,12 @@ public class GameManager : MonoBehaviour
             levelCompleteUI.SetActive(true);
     }
 
+    private int currentLevelIndex = 0;
+
     public void NextLevel()
     {
+        jourTxt.text = currentLevelIndex.ToString();
+        currentLevelIndex++;
         StartLevel();
     }
 
