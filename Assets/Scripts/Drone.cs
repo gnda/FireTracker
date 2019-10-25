@@ -14,6 +14,7 @@ public class Drone : MonoBehaviour
     private List<Vector2> seenFiresPosition;
     public bool IsMoving { set; get; }
     public List<Vector2> SeenFiresPosition => seenFiresPosition;
+    public AudioClip droneSound;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class Drone : MonoBehaviour
 
     public void Move()
     {
+        SoundManager.instance.PlayMenu(droneSound);
         StartCoroutine(MoveToFiresCoroutine());
     }
 
