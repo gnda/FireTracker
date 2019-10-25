@@ -4767,3 +4767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeDuration: 3
+  smokeSFX:
+  - {fileID: 8300000, guid: d654f703170f27541a5d1f675584b214, type: 3}
+  - {fileID: 8300000, guid: f31c3f0ca1dc72f41bcd7a8e20c092d7, type: 3}
+  - {fileID: 8300000, guid: abec84c3f6c50f740b4abe4e19de4e55, type: 3}

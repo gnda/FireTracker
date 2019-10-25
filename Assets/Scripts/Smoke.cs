@@ -5,10 +5,12 @@ using UnityEngine;
 public class Smoke : MonoBehaviour
 {
     [SerializeField] private float smokeDuration = 1.0f;
+    [SerializeField] AudioClip[] smokeSFX;
 
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager.instance.RandomizeSfx(smokeSFX);
         StartCoroutine(DestroyCoroutine());
     }
 

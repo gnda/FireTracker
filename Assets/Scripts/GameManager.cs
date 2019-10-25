@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
             scoreTxt.text = score.ToString();
     }
     #endregion
+    
+    #region Musics
+    [Header("Musics")]
+    [SerializeField] private AudioClip mainMenuMusic;
+    #endregion
 
     #region Panels
     [Header("Panels")]
@@ -114,7 +119,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Levels
-    [SerializeField] GameObject levelPrefab;
     [SerializeField] int maxLevels = 1;
     
     private int currentLevelIndex = 1;
@@ -127,6 +131,7 @@ public class GameManager : MonoBehaviour
         SetTimeScale(0);
 
         DisablePanels();
+        SoundManager.instance.PlayMusic(mainMenuMusic);
         mainMenuPanel.SetActive(true);
     }
 
@@ -232,7 +237,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region Buttons
+    /*#region Buttons
 
     public void WaterBucket_OnClick()
     {
@@ -281,6 +286,6 @@ public class GameManager : MonoBehaviour
             Cursor.SetCursor(null, new Vector2(20, 20), CursorMode.ForceSoftware);
         }
     }
-    #endregion
+    #endregion*/
 
 }
