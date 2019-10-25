@@ -4849,6 +4849,37 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7088049651534675099, guid: 01fc23ce28f78714288a737f243dd599,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 65f3ad132440e4e40b58ce8210e5ff08, type: 2}
+    - target: {fileID: 7088049651534675098, guid: 01fc23ce28f78714288a737f243dd599,
+        type: 3}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b,
+        type: 2}
+    - target: {fileID: 7088049651534675097, guid: 01fc23ce28f78714288a737f243dd599,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 43d59b5c638b0664db55f3a4e4d130ef, type: 2}
+    - target: {fileID: 7088049651534675096, guid: 01fc23ce28f78714288a737f243dd599,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 5eaaa2a366ca80243911cf8bdb7492f7, type: 2}
+    - target: {fileID: 7088049651534675096, guid: 01fc23ce28f78714288a737f243dd599,
+        type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 5eaaa2a366ca80243911cf8bdb7492f7, type: 2}
+    - target: {fileID: 7088049651534675096, guid: 01fc23ce28f78714288a737f243dd599,
+        type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: 7856a5802ab4cdf4886530675c0b5dca, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01fc23ce28f78714288a737f243dd599, type: 3}
 --- !u!4 &4824039150860939001 stripped
