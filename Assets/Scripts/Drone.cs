@@ -42,9 +42,10 @@ public class Drone : MonoBehaviour
     {
         yield return StartCoroutine(RotationCoroutine(endPos));
         yield return StartCoroutine(TranslationCoroutine(transform.position, endPos));
-        
-        if (seenFiresPosition.Count > 0 && 
-            anchorPosition != endPos) {
+
+        if (seenFiresPosition.Count > 0 &&
+            anchorPosition != endPos)
+        {
             GameObject smokeGo = Instantiate(smokePrefab);
             smokeGo.transform.position = endPos;
         }

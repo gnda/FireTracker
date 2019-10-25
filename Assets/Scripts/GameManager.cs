@@ -21,9 +21,8 @@ public enum GameMode
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject m_ImageWaterBucket;
-    [SerializeField] GameObject m_ImageTreeRemover;
-    [SerializeField] GameObject m_ImageShield;
+    [SerializeField] public GameObject m_EyeImage;
+    [SerializeField] public GameObject m_PlayImage;
 
     public static CursorSelection SelectionCursor = CursorSelection.Nothing;
  
@@ -138,7 +137,10 @@ public class GameManager : MonoBehaviour
     public void StartLevel()
     {
         currentGameMode = GameMode.Tracking;
-        
+
+        FindObjectOfType<GameManager>().m_PlayImage.SetActive(false);
+        FindObjectOfType<GameManager>().m_EyeImage.SetActive(true);
+
         FindObjectOfType<Level>().InitLevel(currentLevelIndex == 1);
         timer = FindObjectOfType<Level>().LevelDuration;
         
@@ -156,13 +158,17 @@ public class GameManager : MonoBehaviour
     public void WatchingMode()
     {
         currentGameMode = GameMode.Watching;
+
+        FindObjectOfType<GameManager>().m_PlayImage.SetActive(true);
+        FindObjectOfType<GameManager>().m_EyeImage.SetActive(false);
+
         FindObjectOfType<PlayerGaze>().gameObject
             .GetComponent<SpriteRenderer>().enabled = false;
         FindObjectOfType<Drone>().Move();
     }
 
     public void GoToNextLevel()
-    { 
+    {
         foreach (var s in FindObjectsOfType<Smoke>())
             Destroy(s.gameObject);
         DisablePanels();
