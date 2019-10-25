@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> panels;
 
+    public bool FirstGame { get; set; } = false;
+
     private void RegisterPanels()
     {
         panels = new List<GameObject>();
@@ -117,12 +119,6 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region Levels
-    [SerializeField] int maxLevels = 1;
-    
-    private int currentLevelIndex = 1;
-    #endregion
-
     #region Game Flow
 
     public void InitGame()
@@ -131,6 +127,7 @@ public class GameManager : MonoBehaviour
 
         DisablePanels();
         SoundManager.instance.PlayMusic(mainMenuMusic);
+        FirstGame = true;
         mainMenuPanel.SetActive(true);
     }
 
@@ -141,7 +138,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<GameManager>().m_PlayImage.SetActive(false);
         FindObjectOfType<GameManager>().m_EyeImage.SetActive(true);
 
-        FindObjectOfType<Level>().InitLevel(currentLevelIndex == 1);
+        FindObjectOfType<Level>().InitLevel(FirstGame);
         timer = FindObjectOfType<Level>().LevelDuration;
         
         FindObjectOfType<PlayerGaze>().gameObject
@@ -162,8 +159,9 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<GameManager>().m_PlayImage.SetActive(true);
         FindObjectOfType<GameManager>().m_EyeImage.SetActive(false);
 
-        FindObjectOfType<PlayerGaze>().gameObject
-            .GetComponent<SpriteRenderer>().enabled = false;
+        if (FindObjectOfType<PlayerGaze>())
+            FindObjectOfType<PlayerGaze>().gameObject
+                .GetComponent<SpriteRenderer>().enabled = false;
         FindObjectOfType<Drone>().Move();
     }
 
@@ -173,19 +171,14 @@ public class GameManager : MonoBehaviour
             Destroy(s.gameObject);
         DisablePanels();
         
-        if (FindObjectsOfType<ForestTree>().Length == 0)
+        if (FindObjectsOfType<ForestTree>().Length <= 10)
             GameOver();
-        else if (FindObjectsOfType<Fire>().Length == 0)
-            WinGame();
-        else if (currentLevelIndex < maxLevels)
+        else 
             levelCompleteUI.SetActive(true);
-        else
-            GameOver();
     }
 
     public void NextLevel()
     {
-        currentLevelIndex++;
         StartLevel();
     }
 
@@ -209,7 +202,6 @@ public class GameManager : MonoBehaviour
     {
         ClearScene();
         score = 0;
-        currentLevelIndex = 1;
         DisablePanels();
         SetTimeScale(0);
 
@@ -220,7 +212,6 @@ public class GameManager : MonoBehaviour
     {
         ClearScene();
         score = 0;
-        currentLevelIndex = 1;
         DisablePanels();
         SetTimeScale(0);
         

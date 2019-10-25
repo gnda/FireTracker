@@ -26,6 +26,7 @@ public class Level : MonoBehaviour
     public void InitLevel(bool spawnTrees)
     {
         if (spawnTrees) SpawnTrees();
+        FindObjectOfType<GameManager>().FirstGame = false;
         SpawnFires();
     }
 
@@ -65,62 +66,13 @@ public class Level : MonoBehaviour
                 StartCoroutine(StartBurningCoroutine(Random.Range(0f, 3f)));
     }
 
-    //private void PropagationFire(float posX, float posY, int color)
-    //{
-    //    GameObject fireHaut = Instantiate(firePrefab, new Vector3(posX + 0.5f, posY + 1.5f, color),
-    //    Quaternion.identity);
-    //    colorOfFire.Add(timerFire);
-
-    //    cellBurning.Add(new Vector3(posX, posY+1, timerFire));
-    //    GameObject fireBas = Instantiate(firePrefab, new Vector3(posX + 0.5f, posY - 1.5f, color),
-    //    Quaternion.identity);
-    //    colorOfFire.Add(timerFire);
-
-    //    cellBurning.Add(new Vector3(posX, posY-1, timerFire));
-    //    GameObject fireDroite = Instantiate(firePrefab, new Vector3(posX + 1.5f, posY + 0.5f,color),
-    //    Quaternion.identity);
-    //    colorOfFire.Add(timerFire);
-
-    //    cellBurning.Add(new Vector3(posX+1, posY, timerFire));
-    //    GameObject fireGauche = Instantiate(firePrefab, new Vector3(posX - 1.5f, posY + 0.5f,color),
-    //    Quaternion.identity);
-    //    colorOfFire.Add(timerFire);
-
-    //}
-    
-    /*IEnumerator Propagation(float posX, float posY, float tempsEnSecondes)
-    {
-        yield return new WaitForSeconds(tempsEnSecondes);
-
-        cellBurned.Add(new Vector2(posX, posY));
-
-        cellBurning.Add(new Vector3(posX, posY + 1, timerFire));
-        GameObject fireHaut = Instantiate(firePrefab, new Vector3(posX + 0.5f, posY + 1.5f, tempsEnSecondes),
-        Quaternion.identity);
-        fireHaut.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
-
-        cellBurning.Add(new Vector3(posX, posY - 1, timerFire));
-        GameObject fireBas = Instantiate(firePrefab, new Vector3(posX + 0.5f, posY - 0.5f, tempsEnSecondes),
-        Quaternion.identity);
-        fireBas.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
-
-        cellBurning.Add(new Vector3(posX + 1, posY, timerFire));
-        GameObject fireDroite = Instantiate(firePrefab, new Vector3(posX + 1.5f, posY + 0.5f, tempsEnSecondes),
-        Quaternion.identity);
-        fireDroite.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
-
-        cellBurning.Add(new Vector3(posX - 1, posY, timerFire));
-        GameObject fireGauche = Instantiate(firePrefab, new Vector3(posX - 0.5f, posY + 0.5f, tempsEnSecondes),
-        Quaternion.identity);
-        fireGauche.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
-    }*/
-
     IEnumerator StartBurningCoroutine(float tempsEnSecondes)
     {
         yield return new WaitForSeconds(tempsEnSecondes);
         
         float posX, posY;
         bool fireExists = false;
+        bool treeExists = false;
 
         // On cherche une case sans feu
         do
@@ -132,10 +84,15 @@ public class Level : MonoBehaviour
                 if (f.transform.position.x == posX &&
                     f.transform.position.y == posY ) 
                     fireExists = true;
+            
+            foreach (var t in FindObjectsOfType<ForestTree>())
+                if (t.transform.position.x == posX &&
+                    t.transform.position.y == posY ) 
+                    treeExists = true;
 
             yield return null;
-        } while (fireExists);
-        
+        } while (fireExists || !treeExists);
+
         //Un type de feu parmi nos prefabs
         GameObject firePrefab = firePrefabs[Random.Range(0, firePrefabs.Length)];
 
