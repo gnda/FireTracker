@@ -86,7 +86,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Live - Score")]
     [SerializeField] Text scoreTxt;
+    [SerializeField] Text HighScoreTxt;
     private int score;
+    [Header("Live - Score")]
+    [SerializeField] Text jourTxt;
 
     private List<GameObject> panels;
 
@@ -185,6 +188,7 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        jourTxt.text = currentLevelIndex.ToString();
         currentLevelIndex++;
         StartLevel();
     }
@@ -208,6 +212,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         ClearScene();
+        HighScoreTxt.text = score.ToString();
         score = 0;
         currentLevelIndex = 1;
         DisablePanels();
