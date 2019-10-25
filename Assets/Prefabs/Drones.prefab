@@ -448,6 +448,7 @@ MonoBehaviour:
   rotationDuration: 0.2
   smokePrefab: {fileID: 7753193791999242214, guid: 28dfb095105d0c8478ab170329f437c1,
     type: 3}
+  droneSound: {fileID: 8300000, guid: 4662bb213882c4745805f4f3f83a081f, type: 3}
 --- !u!1 &155887304005107521
 GameObject:
   m_ObjectHideFlags: 0
