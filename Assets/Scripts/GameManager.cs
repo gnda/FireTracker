@@ -184,8 +184,8 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        jourTxt.text = currentLevelIndex.ToString();
         currentLevelIndex++;
+        jourTxt.text = currentLevelIndex.ToString();
         StartLevel();
     }
 
