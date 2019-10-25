@@ -55,13 +55,13 @@ public class Level : MonoBehaviour
     private void SpawnFires()
     {
         if (difficulty == "Easy")
-            for (int i = 0; i < Random.Range(15,30); i++)
+            for (int i = 0; i < Random.Range(8,15); i++)
                 StartCoroutine(StartBurningCoroutine(Random.Range(0f, 10f)));
         if (difficulty == "Normal")
-            for (int i = 0; i < Random.Range(30,60); i++)
+            for (int i = 0; i < Random.Range(15,25); i++)
                 StartCoroutine(StartBurningCoroutine(Random.Range(0f, 5f)));
         if (difficulty == "Hard")
-            for (int i = 0; i < Random.Range(40,71); i++)
+            for (int i = 0; i < Random.Range(25,40); i++)
                 StartCoroutine(StartBurningCoroutine(Random.Range(0f, 3f)));
     }
 
