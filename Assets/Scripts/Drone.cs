@@ -33,6 +33,7 @@ public class Drone : MonoBehaviour
             yield return StartCoroutine(MoveCoroutine(pos));
         yield return StartCoroutine(
             MoveCoroutine(anchorPosition));
+        FindObjectOfType<GameManager>().GoToNextLevel();
     }
     
     private IEnumerator MoveCoroutine(Vector2 endPos)

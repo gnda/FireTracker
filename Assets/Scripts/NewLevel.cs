@@ -6,6 +6,6 @@ public class NewLevel : MonoBehaviour
 {
     public void LoadNextLevel()
     {
-
+        FindObjectOfType<GameManager>().NextLevel();
     }
 }

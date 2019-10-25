@@ -11,106 +11,59 @@ public class Level : MonoBehaviour
     public float LevelDuration => levelDuration;
 
     [Header("Level Prefabs")]
-    [SerializeField] GameObject firePrefab;
-    // [SerializeField] GameObject treePrefab;
+    [SerializeField] GameObject[] firePrefabs;
+    [SerializeField] GameObject treePrefab;
     [SerializeField] string difficulty;
 
-    [Header("Type of Fire")]
-    [SerializeField] int timeBlue;
-    [SerializeField] int timeGreen;
-    [SerializeField] int timeRed;
-
-
-    Color couleur;
-    //Vector2[] cellBurned;
-    //Vector3[] cellBurning;
-    List<Vector2> cellBurned;
-    List<Vector3> cellBurning;
-   
-    int currentlyCellBurn = 0;
-
-    TileBase tile;
-
-    int typeOfFire;
-    int timerFire;
-
-    int posX;
-    int posY;
-    bool boolSortie = true;
-
-    bool inFirst = false;
+    private GameObject firesGo;
 
     private void Start()
     {
-
-        cellBurning = new List<Vector3>();
-        cellBurned = new List<Vector2>();
-        GetAllTiles();
+        firesGo = new GameObject("Fires");
+        firesGo.transform.SetParent(transform);
     }
 
-    private void GetAllTiles()
+    public void InitLevel(bool spawnTrees)
+    {
+        if (spawnTrees) SpawnTrees();
+        SpawnFires();
+    }
+
+    private TileBase[] GetAllTiles()
     {
         Tilemap tilemap = FindObjectOfType<Tilemap>();
-
         BoundsInt bounds = tilemap.cellBounds;
-        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+
+        return tilemap.GetTilesBlock(bounds);
+    }
+
+    private void SpawnTrees()
+    {
+        Tilemap tilemap = FindObjectOfType<Tilemap>();
+        BoundsInt bounds = tilemap.cellBounds;
+        GameObject treesGo = new GameObject("Trees");
+        treesGo.transform.SetParent(transform);
 
         for (int x = 0; x < bounds.size.x; x++)
-        {
             for (int y = 0; y < bounds.size.y; y++)
             {
-                tile = allTiles[x + y * bounds.size.x];
+                GameObject treeGo = Instantiate(treePrefab, treesGo.transform);
+                treeGo.transform.position = new Vector2(x + 0.5f, y + 0.5f);
             }
-        }
-
-        //if (tile != null)
-        //        {
-        //            var position = transform.position;
-        //            GameObject fireGo = Instantiate(firePrefab, new Vector2(x-0.5f, y-0.5f), 
-        //                Quaternion.identity);
-        //            fireGo.transform.SetParent(transform);
-        //        }
-
     }
-    private void SpawnFire()
+
+    private void SpawnFires()
     {
         if (difficulty == "Easy")
-        {
-            //Debug.Log(difficulty);
-            StartCoroutine(BURN(Random.Range(0f, 20f)));
-            //StartCoroutine(WaitingForBURN());
-        }
+            for (int i = 0; i < Random.Range(15,30); i++)
+                StartCoroutine(StartBurningCoroutine(Random.Range(0f, 10f)));
         if (difficulty == "Normal")
-        {
-            //Debug.Log(difficulty);
-            StartCoroutine(BURN(Random.Range(0f, 15f)));
-            //StartCoroutine(WaitingForBURN());
-        }
+            for (int i = 0; i < Random.Range(30,60); i++)
+                StartCoroutine(StartBurningCoroutine(Random.Range(0f, 5f)));
         if (difficulty == "Hard")
-        {
-            //Debug.Log(difficulty);
-            StartCoroutine(BURN(Random.Range(0f, 2f)));
-            //StartCoroutine(WaitingForBURN());
-        }
+            for (int i = 0; i < Random.Range(40,71); i++)
+                StartCoroutine(StartBurningCoroutine(Random.Range(0f, 3f)));
     }
-
-    private void Update()
-    {
-        SpawnFire();
-    //    Debug.Log(cellBurning[0].z);
-       // FireAwaitingToDiseapear();
-    }
-
-    //private void FireAwaitingToDiseapear()
-    //{
-    //        for (int z = 0; z <= cellBurning.Count; z++)
-    //        {
-
-    //            cellBurned.Add(new Vector2(cellBurning[z].x, cellBurning[z].y));
-    //            StartCoroutine(Propagation(cellBurning[z].x, cellBurning[z].y, cellBurning[z].z, z));
-    //        }
-
-    //}
 
     //private void PropagationFire(float posX, float posY, int color)
     //{
@@ -134,7 +87,8 @@ public class Level : MonoBehaviour
     //    colorOfFire.Add(timerFire);
 
     //}
-    IEnumerator Propagation(float posX, float posY, float tempsEnSecondes)
+    
+    /*IEnumerator Propagation(float posX, float posY, float tempsEnSecondes)
     {
         yield return new WaitForSeconds(tempsEnSecondes);
 
@@ -159,68 +113,33 @@ public class Level : MonoBehaviour
         GameObject fireGauche = Instantiate(firePrefab, new Vector3(posX - 0.5f, posY + 0.5f, tempsEnSecondes),
         Quaternion.identity);
         fireGauche.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
-    }
+    }*/
 
-    IEnumerator BURN(float tempsEnSecondes)
+    IEnumerator StartBurningCoroutine(float tempsEnSecondes)
     {
-        if (inFirst == false)
+        yield return new WaitForSeconds(tempsEnSecondes);
+        
+        float posX, posY;
+        bool fireExists = false;
+
+        // On cherche une case sans feu
+        do
         {
-            inFirst = true;
-            yield return new WaitForSeconds(tempsEnSecondes);
-            posX = Random.Range(0, 12);
-            posY = Random.Range(0, 6);
+            posX = Random.Range(0, 12) + 0.5f;
+            posY = Random.Range(0, 6) + 0.5f;
+            
+            foreach (var f in FindObjectsOfType<Fire>())
+                if (f.transform.position.x == posX &&
+                    f.transform.position.y == posY ) 
+                    fireExists = true;
 
-            typeOfFire = Random.Range(0, 3);
-           
-           
-            //Debug.Log(posX);
-            //Debug.Log(posY);
-          //  Debug.Log(typeOfFire);
+            yield return null;
+        } while (fireExists);
+        
+        //Un type de feu parmi nos prefabs
+        GameObject firePrefab = firePrefabs[Random.Range(0, firePrefabs.Length)];
 
-            cellBurning.Add(new Vector3(posX, posY, timerFire));
-
-            StartCoroutine(Propagation(posX, posY, timerFire));
-
-            // var foo = cellBurning.Skip(currentlyCellBurn).First();
-            //  currentlyCellBurn += 1;
-            //Debug.Log(cellBurning[0]);
-            //Debug.Log(cellBurning[1]);
-
-            var position = transform.position;
-            GameObject fireGo = Instantiate(firePrefab, new Vector2(posX + 0.5f, posY + 0.5f),
-                Quaternion.identity);
-            fireGo.GetComponent<SpriteRenderer>().color = SelectColor(typeOfFire);
-            inFirst = false;
-        }
-        //fireGo.transform.SetParent(transform);
-        //print(Time.time);
-    }
-    //IEnumerator WaitingForBURN()
-    //{
-    //    while (inFirst == true)
-    //        yield return new WaitForSeconds(0.1f);
-    //    print("Do stuff.");
-    //}
-
-
-    private Color SelectColor(float color)
-    {
-        if (typeOfFire == 0)
-        {
-            timerFire = timeBlue;
-            couleur = new Color(0, 255, 255, 255);
-        }
-        if (typeOfFire == 1)
-        {
-            timerFire = timeGreen;
-            couleur = new Color(116, 255, 0, 255);
-        }
-        if (typeOfFire == 2)
-        {
-            timerFire = timeRed;
-            couleur = new Color(255, 166, 0, 255);
-        }
-
-        return couleur;
+        GameObject fireGo = Instantiate(firePrefab, firesGo.transform);
+        fireGo.transform.position = new Vector2(posX, posY);
     }
 }

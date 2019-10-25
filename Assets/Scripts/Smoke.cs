@@ -14,12 +14,15 @@ public class Smoke : MonoBehaviour
 
     private IEnumerator DestroyCoroutine()
     {
-        yield return new WaitForSeconds(smokeDuration);
         foreach (var f in FindObjectsOfType<Fire>())
         {
-            if (f.transform.position == transform.position)
+            if (f.transform.position == transform.position) {
+                FindObjectOfType<GameManager>().Scoring();
                 Destroy(f.gameObject);
+            }
         }
+        
+        yield return new WaitForSeconds(smokeDuration);
         Destroy(gameObject);
     }
 }

@@ -10,9 +10,11 @@
         <e p="Scripts" t="Include">
           <e p="Drone.cs" t="Include" />
           <e p="Fire.cs" t="Include" />
+          <e p="ForestTree.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GazePlotterCustom.cs" t="Include" />
           <e p="Level.cs" t="Include" />
+          <e p="NewLevel.cs" t="Include" />
           <e p="PlayerGaze.cs" t="Include" />
           <e p="Smoke.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />

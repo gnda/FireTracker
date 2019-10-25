@@ -64,10 +64,7 @@ public class GameManager : MonoBehaviour
     {
         score += 100;
         if (scoreTxt.IsActive())
-        {
             scoreTxt.text = score.ToString();
-        }
-            
     }
     #endregion
 
@@ -78,13 +75,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject levelCompleteUI;
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject winPanel;
 
     [Header("Live - Texts")]
     [SerializeField] Text timerTxt;
 
     [Header("Live - Score")]
     [SerializeField] Text scoreTxt;
-    [SerializeField] int score;
+    private int score;
 
     private List<GameObject> panels;
 
@@ -96,6 +94,7 @@ public class GameManager : MonoBehaviour
         panels.Add(levelCompleteUI);
         panels.Add(pausePanel);
         panels.Add(gameOverPanel);
+        panels.Add(winPanel);
     }
 
     private void DisablePanels()
@@ -115,9 +114,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Levels
-    [SerializeField] GameObject[] levelsPrefabs;
-
-    private int currentLevelIndex = 0;
+    [SerializeField] GameObject levelPrefab;
+    [SerializeField] int maxLevels = 1;
+    
+    private int currentLevelIndex = 1;
     #endregion
 
     #region Game Flow
@@ -133,10 +133,16 @@ public class GameManager : MonoBehaviour
     public void StartLevel()
     {
         currentGameMode = GameMode.Tracking;
+        
+        FindObjectOfType<Level>().InitLevel(currentLevelIndex == 1);
+        timer = FindObjectOfType<Level>().LevelDuration;
+        
         FindObjectOfType<PlayerGaze>().gameObject
             .GetComponent<SpriteRenderer>().enabled = true;
+
+        FindObjectOfType<Drone>().SeenFiresPosition.Clear();
+        
         DisablePanels();
-        timer = FindObjectOfType<Level>().LevelDuration;
         levelPanel.SetActive(true);
 
         SetTimeScale(1);
@@ -150,14 +156,26 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<Drone>().Move();
     }
 
+    public void GoToNextLevel()
+    { 
+        foreach (var s in FindObjectsOfType<Smoke>())
+            Destroy(s.gameObject);
+        DisablePanels();
+        
+        if (FindObjectsOfType<ForestTree>().Length == 0)
+            GameOver();
+        else if (FindObjectsOfType<Fire>().Length == 0)
+            WinGame();
+        else if (currentLevelIndex < maxLevels)
+            levelCompleteUI.SetActive(true);
+        else
+            GameOver();
+    }
+
     public void NextLevel()
     {
-        levelCompleteUI.SetActive(true);
-
-        if (currentLevelIndex < levelsPrefabs.Length)
-            currentLevelIndex++;
-        else 
-        	WinGame();
+        currentLevelIndex++;
+        StartLevel();
     }
 
     public void PauseGame()
@@ -178,6 +196,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        ClearScene();
+        score = 0;
+        currentLevelIndex = 1;
+        DisablePanels();
         SetTimeScale(0);
 
         gameOverPanel.SetActive(true);
@@ -185,7 +207,23 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
-        //Application.Quit();
+        ClearScene();
+        score = 0;
+        currentLevelIndex = 1;
+        DisablePanels();
+        SetTimeScale(0);
+        
+        winPanel.SetActive(true);
+    }
+
+    private void ClearScene()
+    {
+        foreach (var f in FindObjectsOfType<Fire>())
+            Destroy(f.gameObject);
+        foreach (var s in FindObjectsOfType<Smoke>())
+            Destroy(s.gameObject);
+        foreach (var fo in FindObjectsOfType<ForestTree>())
+            Destroy(fo.gameObject);
     }
 
     public void ExitGame()
