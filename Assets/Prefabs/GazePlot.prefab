@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PointCloudSize: 1
-  PointSprite: {fileID: 21300000, guid: e650892e643ce8a4cbdb36e649229be2, type: 3}
-  PointScale: 1
+  PointSprite: {fileID: 21300000, guid: 6181d8824ae643049b64bdc4de3d10f4, type: 3}
+  PointScale: 0.1
   VisualizationDistance: 10
   FilterSmoothingFactor: 0.15
